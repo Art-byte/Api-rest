@@ -35,22 +35,26 @@ public class ProductoController {
         Producto producto = productoService.getOne(id).get();
         return new ResponseEntity(producto, HttpStatus.OK);
     }
-
-//Este metodo es solo de ejemplo, no se usa nunca en el front
+/*
+//Este metodo es solo de ejemplo, no se usa nunca en el front,
+En caso de usarlo hay que aplicar el mismo concepto de etiqueta con RequestMapping
     @GetMapping("/detalle/{name}")
     public ResponseEntity<Producto> getByName(@PathVariable("name") String name){
         if(!productoService.existsByName(name))
             return new ResponseEntity(new Mensaje("No existe el producto"), HttpStatus.NOT_FOUND);
         Producto producto = productoService.getByName(name).get();
         return new ResponseEntity<Producto>(producto, HttpStatus.OK);
-    }
+    }*/
+
+
 
     //Validaciones
     @PostMapping("/create")
+    @CrossOrigin(origins = "http://localhost:8080") //Agregar cuando haya cros invalidos
     public ResponseEntity<?> create(@RequestBody ProductoDto productoDto){
         if(StringUtils.isBlank(productoDto.getName()))
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
-        if(productoDto.getPrice() < 0)
+        if(productoDto.getPrice()==null || productoDto.getPrice() < 0)
             return new ResponseEntity(new Mensaje("El precio es obligatorio o debe ser mayor a 0"), HttpStatus.BAD_REQUEST);
         if(productoService.existsByName(productoDto.getName()))
             return new ResponseEntity(new Mensaje("El nombre ya existe"), HttpStatus.BAD_REQUEST);

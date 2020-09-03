@@ -8,11 +8,11 @@ public class ProductoDto {
     @NotBlank
     private String name;
     @Min(0)
-    private float price;
+    private Float price;
 
     public ProductoDto(){}
 
-    public ProductoDto(String name, float price) {
+    public ProductoDto(String name, Float price) {
         this.name = name;
         this.price = price;
     }
@@ -25,11 +25,11 @@ public class ProductoDto {
         this.name = name;
     }
 
-    public float getPrice() {
+    public Float getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(Float price) {
         this.price = price;
     }
 }
