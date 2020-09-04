@@ -5,13 +5,16 @@ import com.artcom.Apirest.dto.Mensaje;
 import com.artcom.Apirest.dto.ProductoDto;
 import com.artcom.Apirest.entity.Producto;
 import com.artcom.Apirest.service.ProductoService;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
 import java.util.List;
+
 
 
 @RestController
@@ -50,7 +53,7 @@ En caso de usarlo hay que aplicar el mismo concepto de etiqueta con RequestMappi
 
     //Validaciones
     @PostMapping("/create")
-    @CrossOrigin(origins = "http://localhost:8080") //Agregar cuando haya cros invalidos
+    @CrossOrigin(origins = "*")
     public ResponseEntity<?> create(@RequestBody ProductoDto productoDto){
         if(StringUtils.isBlank(productoDto.getName()))
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
