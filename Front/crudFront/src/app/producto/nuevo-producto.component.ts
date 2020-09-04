@@ -32,7 +32,7 @@ export class NuevoProductoComponent implements OnInit {
     .subscribe(
       data =>{
        // this.toastr.success("Producto creado", "Felicidades",{timeOut: 3000});
-        //this.router.navigate(['/'])
+        this.router.navigate(['/'])
       },
       err => {
         //this.toastr.error(err.error.message, 'Error');

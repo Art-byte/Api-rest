@@ -5,8 +5,9 @@
       <th scope="col">id</th>
       <th scope="col">Name</th>
       <th scope="col">Price</th>
-      <th scope="col">Editar</th>
-      <th scope="col">Eliminar</th>
+      <th scope="col">View</th>
+      <th scope="col">Update</th>
+      <th scope="col">Delete</th>
 
     </tr>
   </thead>
@@ -15,8 +16,9 @@
       <td>{{producto.id}}</td>
       <td>{{producto.name}}</td>
       <td>{{producto.price}}</td>
-      <td><button class="btn btn-outline-warning" routerLink='/editar/{{producto.id}}'><i class="fas fa-edit"></i>Editar</button></td>
-      <td><button class="btn btn-outline-danger" (click) = 'borrar(producto.id)'><i class="fas fa-trash-alt"></i>Eliminar</button></td>
+      <td><button class="btn btn-outline-primary" routerLink='/detalle/{{producto.id}}'><i class="fas fa-edit"></i>View</button></td>
+      <td><button class="btn btn-outline-warning" routerLink='/editar/{{producto.id}}'><i class="fas fa-edit"></i>Update</button></td>
+      <td><button class="btn btn-outline-danger" (click)='borrar(producto.id)'><i class="fas fa-trash-alt"></i>Delete</button></td>
 
   </tbody>
 </table>

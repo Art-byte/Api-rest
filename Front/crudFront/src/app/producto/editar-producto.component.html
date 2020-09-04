@@ -1,1 +1,24 @@
-<p>editar-producto works!</p>
+
+<div class="containter" *ngIf="producto">
+  <div class="row mt-5">
+    <div class="col-md-4 mx-auto">
+
+      <form (ngSubmit) ="onUpdate()" novalidate #f = "ngForm">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" class="form-control" id="name" name="name"
+          [(ngModel)] = "producto.name" required >
+        </div>
+
+        <div class="form-group">
+          <label for="price">Price</label>
+          <input type="text" class="form-control" id="price" name="price"
+           [(ngModel)] = "producto.price" required>
+        </div>
+
+        <button class="btn btn-outline-success btn-block" [disabled] ="!f.valid">Actualizar</button>
+      </form>
+
+    </div>
+  </div>
+</div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Producto } from '../models/producto'
 import { ProductoService } from '../service/producto.service'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lista-producto',
@@ -12,7 +13,11 @@ export class ListaProductoComponent implements OnInit {
 
   productos: Producto[] = [];
 
-  constructor(private productoService: ProductoService) { }
+  constructor(
+    private productoService: ProductoService,
+    private route :Router
+
+    ) { }
 
   ngOnInit(): void {
     this.cargarProductos()
@@ -27,6 +32,14 @@ export class ListaProductoComponent implements OnInit {
   }
 
   borrar(id: number){
-    alert('Borrar el' + id);
-  }
+    this.productoService.delete(id)
+    .subscribe(
+      data => {
+        this.cargarProductos()
+      },
+      err =>{
+        console.log(err)
+      }
+    )
+    }
 }
