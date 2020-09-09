@@ -20,4 +20,8 @@ public class RollService {
     public Optional<Roll> getByRollName (RollName rollName){
         return rollRepository.findByRollName(rollName);
     }
+
+    public void save(Roll roll){
+        rollRepository.save(roll);
+    }
 }

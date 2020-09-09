@@ -28,7 +28,7 @@ public class User {
     private String password;
 
     @NotNull
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_roll", joinColumns = @JoinColumn(name = "user_id"),
     inverseJoinColumns = @JoinColumn(name = "roll_id"))
     private Set<Roll> rolls = new HashSet<>();

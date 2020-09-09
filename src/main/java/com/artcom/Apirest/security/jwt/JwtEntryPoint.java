@@ -14,16 +14,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+
 @Component
 public class JwtEntryPoint implements AuthenticationEntryPoint {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(JwtEntryPoint.class);
+    private final static Logger logger = LoggerFactory.getLogger(JwtEntryPoint.class);
 
     @Override
-    public void commence(HttpServletRequest req, HttpServletResponse res, AuthenticationException e)
-            throws IOException, ServletException {
-
-        LOGGER.error("Error en el metodo");
-        res.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Acceso denegado");
+    public void commence(HttpServletRequest req, HttpServletResponse res, AuthenticationException e) throws IOException, ServletException {
+        logger.error("fail en el método commence");
+        res.sendError(HttpServletResponse.SC_UNAUTHORIZED, "no autorizado");
     }
 }

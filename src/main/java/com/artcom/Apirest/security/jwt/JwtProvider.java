@@ -16,7 +16,7 @@ import java.util.Date;
 @Component
 public class JwtProvider {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(JwtProvider.class);
+    private final static Logger logger = LoggerFactory.getLogger(JwtProvider.class);
 
     @Value("${jwt.secret}")
     private String secret;
@@ -30,7 +30,7 @@ public class JwtProvider {
         return Jwts.builder().setSubject(userMain.getUsername())
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(new Date().getTime() + expiration * 1000))
-                .signWith(SignatureAlgorithm.ES512, secret)
+                .signWith(SignatureAlgorithm.HS512, secret)
                 .compact();
     }
 
@@ -42,24 +42,19 @@ public class JwtProvider {
     }
 
     public boolean validateToken(String token){
-        try{
-
+        try {
             Jwts.parser().setSigningKey(secret).parseClaimsJws(token);
             return true;
-
         }catch (MalformedJwtException e){
-            LOGGER.error("Token mal formado");
+            logger.error("token mal formado");
         }catch (UnsupportedJwtException e){
-            LOGGER.error("Token no soportado");
-        }
-        catch (ExpiredJwtException e){
-            LOGGER.error("Token expirado");
-        }
-        catch (IllegalArgumentException e){
-            LOGGER.error("Token vacio");
-        }
-        catch (SignatureException e){
-            LOGGER.error("Problema en la firma");
+            logger.error("token no soportado");
+        }catch (ExpiredJwtException e){
+            logger.error("token expirado");
+        }catch (IllegalArgumentException e){
+            logger.error("token vacío");
+        }catch (SignatureException e){
+            logger.error("fail en la firma");
         }
         return false;
     }
